@@ -1,52 +1,81 @@
-char t;
+#include <WiFi.h>
+
+const char* ssid = "YOUR_WIFI_NAME";
+const char* password = "YOUR_WIFI_PASSWORD";
+
+WiFiServer server(80);
+
+const int ledPin = 2;
+String header;
 
 void setup() {
-  pinMode(13, OUTPUT);   // left motors forward
-  pinMode(12, OUTPUT);   // left motors reverse
-  pinMode(11, OUTPUT);   // right motors forward
-  pinMode(10, OUTPUT);   // right motors reverse
-  pinMode(9, OUTPUT);    // Led
-  Serial.begin(9600);
+  Serial.begin(115200);
+  pinMode(ledPin, OUTPUT);
+  digitalWrite(ledPin, LOW);
+
+  Serial.println("Connecting to WiFi...");
+  WiFi.begin(ssid, password);
+
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+
+  Serial.println("\nWiFi connected!");
+  Serial.print("IP Address: ");
+  Serial.println(WiFi.localIP());
+
+  server.begin();
 }
 
 void loop() {
-  if (Serial.available()) {
-    t = Serial.read();
-    Serial.println(t);
-  }
+  WiFiClient client = server.available();
 
-  if (t == 'F') {   // move forward (all motors rotate in forward direction)
-    digitalWrite(13, HIGH);
-    digitalWrite(11, HIGH);
-  }
+  if (client) {
+    Serial.println("New Client Connected");
+    String currentLine = "";
+    header = "";
 
-  else if (t == 'B') {   // move reverse (all motors rotate in reverse direction)
-    digitalWrite(12, HIGH);
-    digitalWrite(10, HIGH);
-  }
+    while (client.connected()) {
+      if (client.available()) {
+        char c = client.read();
+        header += c;
 
-  else if (t == 'L') {   // turn right (left side motors rotate in forward direction, right side motors doesn't rotate)
-    digitalWrite(11, HIGH);
-  }
+        if (c == '\n') {
+          if (currentLine.length() == 0) {
 
-  else if (t == 'R') {   // turn left (right side motors rotate in forward direction, left side motors doesn't rotate)
-    digitalWrite(13, HIGH);
-  }
+            if (header.indexOf("GET /on") >= 0) {
+              digitalWrite(ledPin, HIGH);
+            }
+            if (header.indexOf("GET /off") >= 0) {
+              digitalWrite(ledPin, LOW);
+            }
 
-  else if (t == 'W') {   // turn led on
-    digitalWrite(9, HIGH);
-  }
+            client.println("HTTP/1.1 200 OK");
+            client.println("Content-type:text/html");
+            client.println("Connection: close");
+            client.println();
 
-  else if (t == 'w') {   // turn led off
-    digitalWrite(9, LOW);
-  }
+            client.println("<!DOCTYPE html><html>");
+            client.println("<head><meta name='viewport' content='width=device-width, initial-scale=1'>");
+            client.println("<style>button{padding:15px;font-size:20px;margin:10px;}</style></head>");
+            client.println("<body><h2>ESP32 LED Control</h2>");
+            client.println("<p><a href=\"/on\"><button>LED ON</button></a></p>");
+            client.println("<p><a href=\"/off\"><button>LED OFF</button></a></p>");
+            client.println("</body></html>");
 
-  else if (t == 'S') {   // STOP (all motors stop)
-    digitalWrite(13, LOW);
-    digitalWrite(12, LOW);
-    digitalWrite(11, LOW);
-    digitalWrite(10, LOW);
+            client.println();
+            break;
+          } else {
+            currentLine = "";
+          }
+        } else if (c != '\r') {
+          currentLine += c;
+        }
+      }
+    }
+    header = "";
+    client.stop();
+    Serial.println("Client Disconnected");
   }
-
-  delay(100);
 }
