@@ -1,9 +1,9 @@
-# 🚗 Silent Link  
+#  Silent Link  
 ## Arduino-Based Wireless Visible Communication System
 
 ---
 
-## 📌 Project Description
+##  Project Description
 
 Silent Link is an **Arduino-based wireless visible communication system** designed to transmit information **without using audible sound**. The system enables **secure, fast, and interference-resistant communication** using alternative transmission methods such as **wireless signals, light signals, or encoded data**.
 
@@ -11,7 +11,7 @@ This project supports silent communication in environments where traditional voi
 
 ---
 
-## 🎯 Objectives
+##  Objectives
 
 - Enable silent communication without audible sound  
 - Improve privacy and reduce noise pollution  
@@ -21,7 +21,7 @@ This project supports silent communication in environments where traditional voi
 
 ---
 
-## ⚙️ How the System Works
+##  How the System Works
 
 1. Input data is provided in the form of text or coded information  
 2. The Arduino microcontroller reads the input  
@@ -35,7 +35,7 @@ This project supports silent communication in environments where traditional voi
 
 ---
 
-## 🧩 Components Used
+##  Components Used
 
 - Arduino Uno / Nano  
 - RF Module / Bluetooth Module / IR Transmitter & Receiver  
@@ -46,24 +46,24 @@ This project supports silent communication in environments where traditional voi
 
 ---
 
-## 🔐 Security and Interference Handling
+##  Security and Interference Handling
 
 - Uses encoded data transmission to enhance privacy  
 - Reduces interference compared to audible communication  
 - Designed for controlled and authorized testing environments  
 
 
-## 🧪 Applications
+##  Applications
 
-- 🚘 Vehicle-to-Vehicle (V2V) Communication  
-- 🛡️ Security Systems  
-- 🗣️ Assistive Technology for Speech-Impaired Individuals  
-- 🔒 Confidential Communication  
-- 🏭 Noise-Sensitive or Silent Environments  
+-  Vehicle-to-Vehicle (V2V) Communication  
+-  Security Systems  
+-  Assistive Technology for Speech-Impaired Individuals  
+-  Confidential Communication  
+-  Noise-Sensitive or Silent Environments  
 
 ---
 
-## 🌟 Advantages
+##  Advantages
 
 - Silent communication  
 - Improved privacy  
@@ -73,7 +73,7 @@ This project supports silent communication in environments where traditional voi
 
 ---
 
-## 🚀 Future Enhancements
+##  Future Enhancements
 
 - Advanced encryption techniques  
 - Mobile application integration  
@@ -83,7 +83,7 @@ This project supports silent communication in environments where traditional voi
 
 ---
 
-## 🧰 Technologies Used
+##  Technologies Used
 
 - Arduino IDE  
 - Embedded C/C++  
