@@ -42,8 +42,16 @@ This project supports silent communication in environments where traditional voi
 - LEDs (for visible light communication)  
 - Resistors  
 - Jumper Wires  
-- Power Supply  
-
+- Power Supply
+- Motor drive
+- esp32
+- esp8266
+- Bluetooth drive
+- IR sensor
+- bluetooth board (h063)
+- Audio board
+- Solar panel
+- Gear motor
 ---
 
 ##  Security and Interference Handling
