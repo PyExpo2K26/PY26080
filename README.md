@@ -1,4 +1,4 @@
-## Intelligent Pipeline Inspection System With Ai Automated Defect Detection
+## Intelligent Pipeline Inspection System With Ai Automated Defect Detection.
 
 ##  Project Description
 Pipeline systems used for transporting water, oil, and other hazardous materials often develop problems such as cracks, corrosion, and leakage due to aging, environmental conditions, and mechanical stress. These defects can cause serious safety risks, environmental damage, and financial losses if they are not detected early. Traditional inspection methods mainly depend on manual checking, which is time-consuming, costly, and sometimes dangerous for workers because pipelines may be located in confined or hazardous environments. Many existing systems also lack continuous real-time monitoring, making it difficult to identify pipeline defects immediately. Therefore, there is a need for an intelligent pipeline inspection system with automated defect detection to continuously monitor pipeline conditions and improve safety, reliability, and efficiency.
